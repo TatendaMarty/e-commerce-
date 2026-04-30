@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact - MakahCosmetics</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+            color: #333333;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        nav {
+            background: #ffffff;
+            color: #333333;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        nav .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+        nav h2 {
+            margin: 0;
+            color: #8B4513;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        nav .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            color: #5c351f;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+        }
+        nav a:hover {
+            color: #8B4513;
+            transform: translateY(-1px);
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #8B4513;
+            transition: width 0.3s ease;
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139,69,19,0.08) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .hero-section h1 {
+            position: relative;
+            z-index: 2;
+            font-size: 3rem;
+            color: #000000;
+            margin: 0 0 20px 0;
+            font-weight: 300;
+            letter-spacing: -1px;
+        }
+        .hero-section p {
+            position: relative;
+            z-index: 2;
+            font-size: 1.2rem;
+            color: #666666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .container {
+            max-width: 900px;
+            margin: -40px auto 60px;
+            padding: 50px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .contact-info h2 {
+            font-size: 28px;
+            color: #000000;
+            margin: 0 0 30px 0;
+            font-weight: 300;
+        }
+        .info-item {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .info-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        .info-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .info-item h3 {
+            color: #8B4513;
+            margin: 10px 0 5px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .info-item p {
+            color: #666666;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .contact-form h2 {
+            font-size: 28px;
+            color: #000000;
+            margin: 0 0 30px 0;
+            font-weight: 300;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 20px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95rem;
+        }
+        input, textarea {
+            padding: 14px 16px;
+            margin-top: 8px;
+            border: 2px solid #f0f0f0;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: #f9f9f7;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #8B4513;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(139,69,19,0.1);
+        }
+        textarea {
+            height: 130px;
+            resize: vertical;
+        }
+        button {
+            margin-top: 30px;
+            background: #8B4513;
+            color: white;
+            border: 2px solid #8B4513;
+            padding: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: transparent;
+            color: #8B4513;
+            transform: translateY(-2px);
+        }
+        .message {
+            text-align: center;
+            color: #8B4513;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 20px;
+            background: rgba(139,69,19,0.05);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #8B4513;
+        }
+        .success-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 60px 20px;
+            }
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            nav .nav-container {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+            nav .nav-links {
+                gap: 20px;
+            }
+            .container {
+                margin: 20px;
+                padding: 30px;
+            }
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <h2>MakahCosmetics</h2>
+            <div class="nav-links">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'product_list' %}">Products</a>
+                <a href="{% url 'cart' %}">Cart</a>
+                <a href="{% url 'contact' %}">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <h1>Get In Touch </h1>
+        <p>Have questions about our products? We'd love to hear from you!</p>
+    </section>
+
+    <div class="container">
+        {% if submitted %}
+        <div style="text-align: center;">
+            <div class="success-icon"></div>
+            <p class="message">Thank you for contacting us! We'll get back to you soon.</p>
+        </div>
+        {% else %}
+        <div class="contact-content">
+            <div class="contact-info">
+                <h2>Contact Info</h2>
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <h3>Location</h3>
+                    <p>123 Beauty Lane<br>New York, NY 10001</p>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon"></div>
+                    <h3>Email</h3>
+                    <p>support@mahcosmetics.com</p>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon"></div>
+                    <h3>Phone</h3>
+                    <p>+1 (555) 123-4567</p>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon"></div>
+                    <h3>Hours</h3>
+                    <p>Monday - Friday: 9am - 6pm<br>Saturday - Sunday: 10am - 4pm</p>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h2>Send us a Message</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

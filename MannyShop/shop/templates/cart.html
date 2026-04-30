@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart - MakahCosmetics</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+            color: #333333;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        nav {
+            background: linear-gradient(90deg, #8B4513, #5c351f);
+            color: white;
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        }
+        nav .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+        nav h2 {
+            margin: 0;
+            color: #fff2e6;
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        nav .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+        nav a {
+            color: #fff2e6;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+        nav a:hover {
+            background: rgba(255,255,255,0.12);
+            color: white;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #8B4513;
+            transition: width 0.3s ease;
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .message-container {
+            margin-bottom: 20px;
+        }
+        .message {
+            padding: 16px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .message.success {
+            background: #eafaf1;
+            color: #1f7a3f;
+            border: 1px solid #8fd6aa;
+        }
+        h1 {
+            text-align: center;
+            color: #8B4513;
+            margin-bottom: 40px;
+            font-size: 36px;
+            font-weight: 300;
+            letter-spacing: -1px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border-bottom: 1px solid #e9ecef;
+            padding: 18px 15px;
+            text-align: left;
+        }
+        th {
+            background: #f8f9fa;
+            color: #000000;
+            font-weight: 600;
+            border-top: 2px solid #8B4513;
+            border-bottom: 2px solid #8B4513;
+        }
+        tr:hover {
+            background: #fafaf8;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 18px;
+            background: #f8f9fa;
+            border-top: 2px solid #8B4513;
+        }
+        .total td {
+            font-size: 20px;
+            color: #8B4513;
+            padding: 20px 15px;
+        }
+        .empty-cart {
+            text-align: center;
+            font-size: 18px;
+            color: #999999;
+            margin: 60px 0;
+        }
+        .button-group {
+            text-align: center;
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        .continue-shopping {
+            display: inline-block;
+            background: #8B4513;
+            color: white;
+            padding: 14px 40px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #8B4513;
+        }
+        .continue-shopping:hover {
+            background: transparent;
+            color: #8B4513;
+            transform: translateY(-2px);
+        }
+        .checkout-btn {
+            background: transparent;
+            color: #8B4513;
+            padding: 14px 40px;
+            border: 2px solid #8B4513;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+        .checkout-btn:hover {
+            background: #8B4513;
+            color: white;
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            nav .nav-container {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+            nav .nav-links {
+                gap: 20px;
+            }
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <h2>MakahCosmetics</h2>
+            <div class="nav-links">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'product_list' %}">Products</a>
+                <a href="{% url 'cart' %}">Cart</a>
+                <a href="{% url 'contact' %}">Contact</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>🛍️ Your Shopping Cart</h1>
+        {% if messages %}
+        <div class="message-container">
+            {% for message in messages %}
+            <div class="message {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% if items %}
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+            </tr>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.product.price }}</td>
+                <td>${{ item.subtotal }}</td>
+            </tr>
+            {% endfor %}
+            <tr class="total">
+                <td colspan="3"><strong>Total</strong></td>
+                <td><strong>${{ total }}</strong></td>
+            </tr>
+        </table>
+        <div class="button-group">
+            <a href="{% url 'product_list' %}" class="continue-shopping">Continue Shopping</a>
+            <a href="{% url 'checkout' %}" class="checkout-btn">Proceed to Checkout</a>
+        </div>
+        {% else %}
+        <p class="empty-cart">🛒 Your cart is empty. Start shopping to add items!</p>
+        <div style="text-align: center;">
+            <a href="{% url 'product_list' %}" class="continue-shopping">Shop Now</a>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
