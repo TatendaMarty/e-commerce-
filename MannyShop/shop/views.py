@@ -59,7 +59,7 @@ def checkout(request):
     if request.method == 'POST':
         if items:
             request.session['cart'] = {}
-            messages.success(request, 'Order confirmed! Thank you for shopping with MakahCosmetics.')
+            messages.success(request, 'Order confirmed! Thank you for shopping with RueShop.')
             return redirect('home')
         messages.warning(request, 'Your cart is empty. Add items before confirming your order.')
         return redirect('cart')

@@ -1,5 +1,5 @@
 """
-ASGI config for MannyShop project.
+ASGI config for RueShop project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
